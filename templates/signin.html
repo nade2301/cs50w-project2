@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    ChatApp
+{% endblock %}
+
+{% block content %}
+
+<h4 style="margin-bottom: 40px;" class="display-4">What is your <kbd>Name</kbd>?</h4>
+<form action="/signin" method="POST">
+    <div class="form-group">
+        <input type="text" class="form-control" id="username" name="username"  autocomplete="off" autofocus aria-describedby="userHelp">
+    </div>
+    <button class="btn btn-outline-dark" type="submit">Sign In</button>
+</form>
+
+{% block footer %}
+<footer>
+  <div class="container fixed-bottom">   
+    <nav  class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-6 bg-white rounded" >
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="margin:5px;">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse"  id="navbarNavDropdown2" >
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0" style="margin-left: auto;">
+          <li class="nav-item">
+            <p class=" links github">Created by LeoZorzoli <i class="fa fa-heart-o"></i></p>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>  
+</footer>
+{% endblock %}
+
+{% endblock %}

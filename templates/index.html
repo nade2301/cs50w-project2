@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    ChatApp
+{% endblock %}
+
+{% block content %}
+    <h2 style="margin-bottom: 20px;" class="display-3">Create a new <kbd>Channel</kbd>!</h2>
+    <form action="/create" method="post">
+        <div class="form-group">
+            <input type="text" class="form-control" name="channel" id="channel"  autocomplete="off" autofocus>
+        </div>
+        <button class="btn btn-outline-dark" type="submit">Create</button>
+    </form>
+
+    {% block footer %}
+    <footer>
+      <div class="container fixed-bottom">   
+        <nav  class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-6 bg-white rounded" >
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="margin:5px;">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse"  id="navbarNavDropdown2" >
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0" style="margin-left: auto;">
+              <li class="nav-item">
+                <p class=" links github">Created by LeoZorzoli <i class="fa fa-heart-o"></i></p>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>  
+    </footer>
+    {% endblock %}
+  
+
+      <h1 style="display: none;" id="channelsList">{{channels}}</h1>
+
+<script type="text/javascript">
+  var channel = localStorage.getItem('last_channel')
+  var list = document.getElementById('channelsList').innerHTML
+
+  if (list.includes(channel)) {
+      window.location.replace('/channels/' + channel);   
+  }
+</script>
+{% endblock %}

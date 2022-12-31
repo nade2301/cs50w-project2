@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<script src="../static/channel.js"></script>
+{% endblock %}
+
+{% block title %}
+{{ session.current_channel }}
+{% endblock %}
+
+{% block content %}
+<div class="custom-window">
+    <div>
+        <h1 style="margin-bottom: 10px;">
+            <span class="display-3">
+                Channel: <kbd>{{ session.current_channel }}</kbd> 
+            </span>
+        </h1>
+    </div>
+    <div id="chat-box" class="list-group">
+        <ul id="chat">
+            {%- if messages -%} 
+                {%- for message in messages -%}
+                        <li class="messageBox"><strong class="user">{{message[1]|title}} </strong><small class="time">{{message[0]}}</small><br><span class="msg">{{ message [2] }}</span></li>
+                {%- endfor -%}
+                <p class="message-info">{{ '-- These are old messages -- ' }}{{- '\n' -}}</p>
+            {%- endif -%}
+        </ul>
+    </div>
+
+    <div id="message-box">
+        <div class="form-border">
+            <div class="form-row">
+                <div class="form-group col-sm">
+                    <div class="input-group">
+                        <textarea id="comment" class="form-control" rows="1" autocomplete="off"></textarea>
+                    </div>  
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="form-group" style="margin-right:4px">
+        <button id="send-button" class="btn btn-outline-dark" type="reset">Send</button>
+        <button id="leave" type="button" class="btn btn-outline-dark" >Leave channel</button>
+    </div>
+</div>
+
+<script>
+        // Button disabled if no message
+        document.querySelector('#send-button').disabled = true;
+        document.querySelector('#comment').onkeyup = function() {
+            let message = document.querySelector('#comment').value;
+
+            if (message.length > 0 ){
+                document.querySelector('#send-button').disabled = false;
+            }
+            else {
+                document.querySelector('#send-button').disabled = true;
+            }
+        }
+</script>
+
+{% endblock %}

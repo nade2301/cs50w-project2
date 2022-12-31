@@ -1,0 +1,98 @@
+@media (max-height: 800px){
+    footer{
+        display:none;
+    }
+}
+
+main
+{
+    overflow-x: auto;
+    text-align: center;
+}
+
+
+main .form-control
+{
+    display: inline-block;
+    width: auto;
+}
+
+.custom-window {
+    border: 1px solid grey;
+    padding: 20px 20px 30px 20px;
+}
+
+.container-main{
+    padding: 4%;
+}
+
+.container-channel {
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+
+#message-box, #file-selector {
+    align-self: center;
+}
+
+#message-box {
+    margin: 20px 20px 10px 30px;
+}
+
+#chat {
+    padding: 20px;
+}
+
+#welcome:hover{
+    color: white;
+}
+
+.links{
+    font-size: 20px;
+    font-family: monospace;
+}
+
+.nav-link{
+    text-align: center;
+    color:#423f3f !important;
+}
+
+.name-page{
+    font-family: 'Turret Road';
+}
+
+.nav-item{
+    font-family: 'Turret Road';
+}
+
+/* MESSAGE BOX */
+
+.messageBox{
+    list-style: none;
+    margin-bottom: 1px;
+    text-align: left;
+}
+
+
+/* MESSAGE PARTS */
+
+.user{
+    font-family: 'Turret Road';
+    font-size: 18px;
+    color: Black;
+}
+
+.msg{
+    margin: 0px;
+    font-family: 'Turret Road';
+}
+
+.time{
+    color: grey;
+}
+
+.message-info{
+    font-family: 'Turret Road';
+    font-size: 18px;
+}

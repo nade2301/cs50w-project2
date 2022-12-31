@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Turret+Road:wght@800&display=swap" rel="stylesheet">
+
+        {% block head %}
+        {% endblock %}
+        
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+    </head>
+
+    <body>
+      <div class="container">
+      {% if session.username %}
+            <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm bg-white rounded" style="margin-top: 6px;">
+                    <a class="navbar-brand name-page" style="margin:5px; font-size: 22px;">ChatApp<i class="fa fa-comment-o" style="margin-right:2px"></i></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="margin:5px">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                          <a id="newChannel" class="nav-link btn btn-outline-light" href="/" style="margin:5px;"><i class="fa fa-plus"></i> New Channel</a>
+                        </li>
+                        {% if not channels %}
+                        {% else %}
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle btn btn-outline-light" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin:5px;">
+                            <i class="fa fa-navicon" style="margin-right: 2px;"></i> Channels
+                          </a>
+                          
+                          
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            {% for channel in channels %}
+                            <a class="dropdown-item btn-dark" href="/channels/{{ channel }}" style="text-align: center;">{{ channel }}</a>
+                            {% endfor %}
+                          </div>
+                          {% endif %}
+                        </li>
+                      </ul>
+                      <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle btn btn-outline-light" id="navbarDropdownMenuLink" data-toggle="dropdown" href="#" style="margin:5px;">
+                            <i class="fa fa-user-circle-o" style="margin-right: 2px;"></i>{{ session.username|title }}
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item btn-dark" id="change" href="/change" style="text-align: center;"><i class="fa fa-exchange" style="margin-right: 4px;"></i>Change your name</a>
+                            <a class="dropdown-item btn-dark" href="/logout" style="text-align: center;"><i class="fa fa-close" style="margin-right: 4px;"></i>Logout</a>
+                          </div>
+                        </li>              
+                      </ul>
+                    </div>
+                    {% else %}
+                    <div class="accordion shadow mb-5 bg-white rounded" id="accordionExample" style="border: solid 1px black; margin-top: 20px;">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link btn-dark btn-block text-center" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration:none;">
+                              <span style="color:black; font-size: 25px; font-family: Arial, Helvetica, sans-serif; color: #f8f8f8"><strong>Welcome to my <i>Chat</i></strong> <i class="fa fa-angle-double-down"></i></span>
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div class="card-body" style="text-align: center;">
+                            If you are new to this chat just put your name below and start chatting with others. <br> <strong>Please keep order and respect others.</strong>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% endif %}
+                  </nav>
+                </div>
+                <main class="container-main">
+                  {% block content %}
+                  {% endblock %}
+                </main>
+
+                {% block footer %}
+
+                {% endblock %}
+
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>  
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>   
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js"></script>
+    </body>
+</html>
